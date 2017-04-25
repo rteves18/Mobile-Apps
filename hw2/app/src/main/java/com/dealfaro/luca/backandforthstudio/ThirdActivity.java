@@ -1,6 +1,5 @@
 package com.dealfaro.luca.backandforthstudio;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import static com.dealfaro.luca.backandforthstudio.MainActivity.MYPREFS;
-
-public class SecondActivity extends AppCompatActivity {
+public class ThirdActivity extends AppCompatActivity {
 
     static final public String MYPREFS = "myprefs";
     static final public String PREF_STRING_1 = "string_1";
@@ -21,7 +18,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_third);
         appInfo = AppInfo.getInstance(this);
     }
 
@@ -29,7 +26,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // Writes the string from main activity.
-        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
+        SharedPreferences settings = getSharedPreferences(MainActivity.MYPREFS, 0);
         String myText = settings.getString(MainActivity.PREF_STRING_1, "");
         TextView tv = (TextView) findViewById(R.id.textView2);
         tv.setText(myText);
@@ -50,11 +47,11 @@ public class SecondActivity extends AppCompatActivity {
 
     public void goto_first(View V) {
 //        // Grab the text, and store it in a preference.
-//        EditText edv = (EditText) findViewById(R.id.editText2);
-//        String text2 = edv.getText().toString();
+//        EditText edv = (EditText) findViewById(R.id.editText3);
+//        String text3 = edv.getText().toString();
 //        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
 //        SharedPreferences.Editor editor = settings.edit();
-//        editor.putString(PREF_STRING_1, text2);
+//        editor.putString(PREF_STRING_1, text3);
 //        editor.commit();
 
         Intent intent = new Intent(this, MainActivity.class);
@@ -63,19 +60,19 @@ public class SecondActivity extends AppCompatActivity {
         // finish();
     }
 
-    public void goto_third(View V) {
+    public void goto_second(View V) {
 //        // Grab the text, and store it in a preference.
-//        EditText edv = (EditText) findViewById(R.id.editText2);
-//        String text2 = edv.getText().toString();
+//        EditText edv = (EditText) findViewById(R.id.editText3);
+//        String text3 = edv.getText().toString();
 //        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
 //        SharedPreferences.Editor editor = settings.edit();
-//        editor.putString(PREF_STRING_1, text2);
+//        editor.putString(PREF_STRING_1, text3);
 //        editor.commit();
 
-
-        Intent intent = new Intent(this, ThirdActivity.class);
+        Intent intent = new Intent(this, SecondActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         // finish();
     }
+
 }

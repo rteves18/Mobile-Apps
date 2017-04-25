@@ -13,18 +13,29 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/first_activity_hello" />
+        android:text="@string/first_title" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="goto_second"
+        android:text="@string/gotosecond"
+        android:layout_above="@+id/button3"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignStart="@+id/button3"
+        android:layout_marginBottom="21dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editText2"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="175dp"
-        android:layout_marginLeft="19dp"
-        android:layout_toRightOf="@+id/textView1"
-        android:onClick="goOther"
-        android:text="@string/gostring" />
+        android:layout_alignRight="@+id/editText2"
+        android:layout_marginBottom="125dp"
+        android:onClick="goto_third"
+        android:text="@string/gotothird" />
 
     <EditText
         android:id="@+id/editText1"

@@ -28,14 +28,13 @@ public class MainActivity extends AppCompatActivity {
         String myText = settings.getString(MainActivity.PREF_STRING_1, "");
         EditText edv = (EditText) findViewById(R.id.editText1);
         edv.setText(myText);
-//adding a dumb comment
         EditText edv2 = (EditText) findViewById(R.id.editText2);
         if (appInfo.sharedString != null) {
             edv2.setText(appInfo.sharedString);
         }
     }
 
-    public void goOther(View V) {
+    public void goto_second(View V) {
         // Grab the text, and store it in a preference.
         EditText edv = (EditText) findViewById(R.id.editText1);
         String text1 = edv.getText().toString();
@@ -51,6 +50,25 @@ public class MainActivity extends AppCompatActivity {
 
         // Go to second activity
         Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
+    }
+
+    public void goto_third(View V) {
+        // Grab the text, and store it in a preference.
+        EditText edv = (EditText) findViewById(R.id.editText1);
+        String text1 = edv.getText().toString();
+        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(PREF_STRING_1, text1);
+        editor.commit();
+
+//         The second string we store it in the singleton class.
+        EditText edv2 = (EditText) findViewById(R.id.editText2);
+        String text2 = edv2.getText().toString();
+        appInfo.setColor(text2);
+
+        // Go to second activity
+        Intent intent = new Intent(this, ThirdActivity.class);
         startActivity(intent);
     }
 
