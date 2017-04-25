@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/editText3"
         android:layout_width="146dp"
-        android:layout_height="37dp"
+        android:layout_height="50dp"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="8dp"

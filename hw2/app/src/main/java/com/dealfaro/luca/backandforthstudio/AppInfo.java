@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class AppInfo {
 
     private static AppInfo instance = null;
-    private static final String COLOR_NAME = "color2";
+    private static final String[] COLOR_NAME = new String[3];
     private String[] paco = new String[3];
 
     protected AppInfo() {
@@ -30,7 +30,7 @@ public class AppInfo {
             instance.my_context = context;
             for (int i=0; i < 3; i++) {
                 SharedPreferences settings = context.getSharedPreferences(MainActivity.MYPREFS, i);
-                instance.sharedString[i] = settings.getString(COLOR_NAME, null);
+                instance.sharedString[i] = settings.getString(COLOR_NAME[i], null);
             }
         }
         return instance;
@@ -42,7 +42,7 @@ public class AppInfo {
         Log.d("this is my array", "arr: " + Arrays.toString(paco));
         SharedPreferences settings = my_context.getSharedPreferences(MainActivity.MYPREFS, x);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString(COLOR_NAME, paco[x]);
+        editor.putString(COLOR_NAME[x], paco[x]);
         editor.commit();
     }
 

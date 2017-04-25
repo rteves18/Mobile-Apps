@@ -34,24 +34,17 @@ public class MainActivity extends AppCompatActivity {
         if (appInfo.sharedString != null) {
             edv.setText(appInfo.sharedString[0]);
         }
-        //insert string2
-//        EditText edv2 = (EditText) findViewById(R.id.editText2);
-//        if (appInfo.sharedString != null) {
-//            edv2.setText(appInfo.sharedString[1]);
-//        }
+
     }
 
     public void goto_first(View V) {
         EditText edv1 = (EditText) findViewById(R.id.editText1);
         String text1 = edv1.getText().toString();
         appInfo.setColor(text1, 0);
-        // The second string we store it in the singleton class.
-//        EditText edv2 = (EditText) findViewById(R.id.editText2);
-//        String text2 = edv2.getText().toString();
-//        appInfo.setColor(text2, 1);
 
         // Go to second activity
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -59,13 +52,10 @@ public class MainActivity extends AppCompatActivity {
         EditText edv1 = (EditText) findViewById(R.id.editText1);
         String text1 = edv1.getText().toString();
         appInfo.setColor(text1, 0);
-        // The second string we store it in the singleton class.
-//        EditText edv2 = (EditText) findViewById(R.id.editText2);
-//        String text2 = edv2.getText().toString();
-//        appInfo.setColor(text2, 1);
 
         // Go to second activity
         Intent intent = new Intent(this, SecondActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -73,19 +63,17 @@ public class MainActivity extends AppCompatActivity {
         EditText edv1 = (EditText) findViewById(R.id.editText1);
         String text1 = edv1.getText().toString();
         appInfo.setColor(text1, 0);
-//         The second string we store it in the singleton class.
-//        EditText edv2 = (EditText) findViewById(R.id.editText2);
-//        String text2 = edv2.getText().toString();
-//        appInfo.setColor(text2, 1);
 
-        // Go to second activity
+       // Go to second activity
         Intent intent = new Intent(this, ThirdActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, SecondActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
