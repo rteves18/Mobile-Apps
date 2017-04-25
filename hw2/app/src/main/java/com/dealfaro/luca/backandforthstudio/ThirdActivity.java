@@ -25,15 +25,22 @@ public class ThirdActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Writes the string from main activity.
-        SharedPreferences settings = getSharedPreferences(MainActivity.MYPREFS, 0);
-        String myText = settings.getString(MainActivity.PREF_STRING_1, "");
-        TextView tv = (TextView) findViewById(R.id.textView2);
-        tv.setText(myText);
+//        // Writes the string from main activity.
+//        SharedPreferences settings = getSharedPreferences(MainActivity.MYPREFS, 0);
+//        String myText = settings.getString(MainActivity.PREF_STRING_1, "");
+//        TextView tv = (TextView) findViewById(R.id.textView2);
+//        tv.setText(myText);
 
         // and the one from the singleton object
-        TextView tv2 = (TextView) findViewById(R.id.textView3);
-        tv2.setText(appInfo.sharedString[1]);
+        TextView tv2 = (TextView) findViewById(R.id.textView2);
+        tv2.setText(appInfo.sharedString[0]);
+        TextView tv3 = (TextView) findViewById(R.id.textView3);
+        tv3.setText(appInfo.sharedString[1]);
+
+        EditText edv = (EditText) findViewById(R.id.editText3);
+        if (appInfo.sharedString != null) {
+            edv.setText(appInfo.sharedString[2]);
+        }
 
     }
 
@@ -44,6 +51,16 @@ public class ThirdActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goto_third(View V) {
+        EditText edv1 = (EditText) findViewById(R.id.editText3);
+        String text3 = edv1.getText().toString();
+        appInfo.setColor(text3, 2);
+
+        Intent intent = new Intent(this, ThirdActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        // finish();
+    }
 
     public void goto_first(View V) {
         EditText edv1 = (EditText) findViewById(R.id.editText3);

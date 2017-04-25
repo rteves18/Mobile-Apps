@@ -28,8 +28,10 @@ public class AppInfo {
         if(instance == null) {
             instance = new AppInfo();
             instance.my_context = context;
-            SharedPreferences settings = context.getSharedPreferences(MainActivity.MYPREFS, 0);
-            instance.sharedString[0] = settings.getString(COLOR_NAME, null);
+            for (int i=0; i < 3; i++) {
+                SharedPreferences settings = context.getSharedPreferences(MainActivity.MYPREFS, i);
+                instance.sharedString[i] = settings.getString(COLOR_NAME, null);
+            }
         }
         return instance;
     }
@@ -38,7 +40,7 @@ public class AppInfo {
         paco[x] = c;
         instance.sharedString[x] = paco[x];
         Log.d("this is my array", "arr: " + Arrays.toString(paco));
-        SharedPreferences settings = my_context.getSharedPreferences(MainActivity.MYPREFS, 0);
+        SharedPreferences settings = my_context.getSharedPreferences(MainActivity.MYPREFS, x);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(COLOR_NAME, paco[x]);
         editor.commit();

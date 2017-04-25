@@ -1,8 +1,6 @@
 package com.dealfaro.luca.backandforthstudio;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,16 +26,21 @@ public class SecondActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // Writes the string from main activity.
-        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
-        String myText = settings.getString(MainActivity.PREF_STRING_1, "");
-        TextView tv = (TextView) findViewById(R.id.textView2);
-        tv.setText(myText);
+//        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
+//        String myText = settings.getString(MainActivity.PREF_STRING_1, "");
+//        TextView tv = (TextView) findViewById(R.id.textView2);
+//        tv.setText(myText);
 
         // and the one from the singleton object
-        TextView tv2 = (TextView) findViewById(R.id.textView3);
-        tv2.setText(appInfo.sharedString[1]);
-        TextView tv3 = (TextView) findViewById(R.id.textView4);
+        TextView tv2 = (TextView) findViewById(R.id.textView1);
+        tv2.setText(appInfo.sharedString[0]);
+        TextView tv3 = (TextView) findViewById(R.id.textView3);
         tv3.setText(appInfo.sharedString[2]);
+
+        EditText edv = (EditText) findViewById(R.id.editText2);
+        if (appInfo.sharedString != null) {
+            edv.setText(appInfo.sharedString[1]);
+        }
     }
 
     @Override
@@ -47,15 +50,21 @@ public class SecondActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goto_second(View V) {
+        EditText edv2 = (EditText) findViewById(R.id.editText2);
+        String text2 = edv2.getText().toString();
+        appInfo.setColor(text2, 1);
+
+        Intent intent = new Intent(this, SecondActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        // finish();
+    }
 
     public void goto_first(View V) {
-//        // Grab the text, and store it in a preference.
-//        EditText edv = (EditText) findViewById(R.id.editText2);
-//        String text2 = edv.getText().toString();
-//        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
-//        SharedPreferences.Editor editor = settings.edit();
-//        editor.putString(PREF_STRING_1, text2);
-//        editor.commit();
+        EditText edv2 = (EditText) findViewById(R.id.editText2);
+        String text2 = edv2.getText().toString();
+        appInfo.setColor(text2, 1);
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -64,14 +73,9 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     public void goto_third(View V) {
-//        // Grab the text, and store it in a preference.
-//        EditText edv = (EditText) findViewById(R.id.editText2);
-//        String text2 = edv.getText().toString();
-//        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
-//        SharedPreferences.Editor editor = settings.edit();
-//        editor.putString(PREF_STRING_1, text2);
-//        editor.commit();
-
+        EditText edv2 = (EditText) findViewById(R.id.editText2);
+        String text2 = edv2.getText().toString();
+        appInfo.setColor(text2, 1);
 
         Intent intent = new Intent(this, ThirdActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
