@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 public class ThirdActivity extends AppCompatActivity {
 
-    //static final public String MYPREFS = "myprefs";
-    //static final public String PREF_STRING_1 = "string_1";
-
     AppInfo appInfo;
 
     @Override
@@ -25,11 +22,6 @@ public class ThirdActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        // Writes the string from main activity.
-//        SharedPreferences settings = getSharedPreferences(MainActivity.MYPREFS, 0);
-//        String myText = settings.getString(MainActivity.PREF_STRING_1, "");
-//        TextView tv = (TextView) findViewById(R.id.textView2);
-//        tv.setText(myText);
 
         // and the one from the singleton object
         TextView tv2 = (TextView) findViewById(R.id.textView2);
