@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -23,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
-import static com.dealfaro.luca.androidhomephone.R.id.detailView;
+//import static com.dealfaro.luca.androidhomephone.R.id.detailView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,19 +47,31 @@ public class MainActivity extends AppCompatActivity {
         // We need the "final" keyword here to guarantee that the
         // value does not change, as it is used in the callbacks.
 
-        getList();
-        sendMsg("Anna", "Clara", "Tschuss!");
-        getMessages("mario");
+//        getList();
+//        sendMsg("Anna", "Clara", "abracadabra");
+//        getMessages("abracadabra");
     }
 
-    private void sendMsg(final String sender, final String recipient, final String msg) {
+    public void http_get(View view){
+        getMessages("abracadabra");
+    }
 
+    public void http_post(View view){
+        sendMsg("abracadabra");
+    }
+
+    private void sendMsg(final String msg) {
+
+        final TextView detailView = (TextView) findViewById(R.id.detailView1);
         StringRequest sr = new StringRequest(Request.Method.POST,
-                "https://luca-ucsc-teaching-backend.appspot.com/api_w_ndb/send_msg",
+                //"https://luca-ucsc-teaching-backend.appspot.com/api_w_ndb/send_msg",
+                "https://luca-ucsc-teaching-backend.appspot.com/hw3/request_via_post",
                 new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d(LOG_TAG, "Got:" + response);
+                Log.d(LOG_TAG, "sendMsg Got:" + response);
+                String value = response.toString();
+                detailView.setText(value);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -68,9 +81,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("sender", sender);
-                params.put("recipient" , recipient);
-                params.put("msg", msg);
+                params.put("token", msg);
                 return params;
             }
 
@@ -86,19 +97,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void getMessages(final String recipient) {
+    private void getMessages(final String msg) {
 
         // Instantiate the RequestQueue.
-        String url = "https://luca-ucsc-teaching-backend.appspot.com/api_w_ndb/get_msg_for_me";
+        final TextView detailView = (TextView) findViewById(R.id.detailView1);
+        //String url = "https://luca-ucsc-teaching-backend.appspot.com/api_w_ndb/get_msg_for_me";
+        String url = "https://luca-ucsc-teaching-backend.appspot.com/hw3/request_via_get";
 
-        String my_url = url + "?recipient=" + URLEncoder.encode(recipient);
+        String my_url = url + "?token=" + URLEncoder.encode(msg);
+
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                (Request.Method.GET, my_url, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d(LOG_TAG, "Received: " + response.toString());
+                        Log.d(LOG_TAG, "getMessages Received: " + response.toString());
+                        detailView.setText(response.toString());
                         // Ok, let's disassemble a bit the json object.
                     }
                 }, new Response.ErrorListener() {
@@ -119,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void getList() {
-        final TextView mTextView = (TextView) findViewById(R.id.my_text);
-        final TextView detailView = (TextView) findViewById(R.id.detailView);
+//        final TextView mTextView = (TextView) findViewById(R.id.my_text);
+//        final TextView detailView = (TextView) findViewById(R.id.detailView);
 
         // Instantiate the RequestQueue.
         String url = "https://luca-ucsc-teaching-backend.appspot.com/api/get_list";
@@ -130,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        mTextView.setText("Response json: " + response.toString());
-                        Log.d(LOG_TAG, "Received: " + response.toString());
+//                        mTextView.setText("Response json: " + response.toString());
+                        Log.d(LOG_TAG, "getList Received: " + response.toString());
                         // Ok, let's disassemble a bit the json object.
                         try {
                             JSONArray receivedList = response.getJSONArray("mylist");
@@ -140,9 +155,9 @@ public class MainActivity extends AppCompatActivity {
                                 allTogether += receivedList.getString(i) + ";";
                             }
                             allTogether += ")";
-                            detailView.setText(allTogether);
+//                            detailView.setText(allTogether);
                         } catch (Exception e) {
-                            mTextView.setText("Aaauuugh, received bad json: " + e.getStackTrace());
+//                            mTextView.setText("Aaauuugh, received bad json: " + e.getStackTrace());
                         }
                     }
                 }, new Response.ErrorListener() {

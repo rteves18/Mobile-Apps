@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/rteves/.android/build-cache/eac65142449d1ee34a32a63869ba4e875f934baa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="/Users/rteves/Documents/college/cmps/cmps121/hw/hw3/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_94e9d2ad1088c03406a448b20d1dcd716ac9f3c0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rteves/Documents/college/cmps/cmps121/hw/hw3/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e15aa1fcded47b63134411ab86e8613e9b466bf9">
+        <dex dex="/Users/rteves/Documents/college/cmps/cmps121/hw/hw3/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_26a8bceadee3d4e1ac92404883b545de8f6f96fa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rteves/Documents/college/cmps/cmps121/hw/hw3/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/rteves/Documents/college/cmps/cmps121/hw/hw3/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_af6122e52b4733311f7bc8a5d53cf0bb7a0a4eca/classes.dex" />
+    </item>
+
+</items>
