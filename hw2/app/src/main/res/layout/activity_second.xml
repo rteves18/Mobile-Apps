@@ -58,26 +58,27 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="26dp"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        app:layout_constraintHorizontal_bias="0.074"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/button1"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button1" />
+        app:layout_constraintRight_toLeftOf="@+id/button1" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="26dp"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginLeft="31dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/button2"
-        android:layout_marginRight="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button2" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/button2" />
 
 
 </android.support.constraint.ConstraintLayout>

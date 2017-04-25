@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import static com.dealfaro.luca.backandforthstudio.MainActivity.MYPREFS;
 
 public class SecondActivity extends AppCompatActivity {
 
