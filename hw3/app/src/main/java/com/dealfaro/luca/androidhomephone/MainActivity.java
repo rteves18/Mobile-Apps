@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URLEncoder;
@@ -70,8 +71,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.d(LOG_TAG, "sendMsg Got:" + response);
-                String value = response.toString();
-                detailView.setText(value);
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    String value = obj.getString("result");
+                    detailView.setText(value);
+                } catch (JSONException e){
+                   throw new RuntimeException(e);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -113,7 +119,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(LOG_TAG, "getMessages Received: " + response.toString());
-                        detailView.setText(response.toString());
+                        try {
+                            String value = response.getString("result");
+                            detailView.setText(value);
+                        } catch (JSONException e){
+                            throw new RuntimeException(e);
+                        }
                         // Ok, let's disassemble a bit the json object.
                     }
                 }, new Response.ErrorListener() {
