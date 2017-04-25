@@ -35,18 +35,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goto_second(View V) {
-        // Grab the text, and store it in a preference.
-        EditText edv = (EditText) findViewById(R.id.editText1);
-        String text1 = edv.getText().toString();
-        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(PREF_STRING_1, text1);
-        editor.commit();
-
+        EditText edv1 = (EditText) findViewById(R.id.editText1);
+        String text1 = edv1.getText().toString();
+        appInfo.setColor(text1, 0);
         // The second string we store it in the singleton class.
         EditText edv2 = (EditText) findViewById(R.id.editText2);
         String text2 = edv2.getText().toString();
-        appInfo.setColor(text2);
+        appInfo.setColor(text2, 1);
 
         // Go to second activity
         Intent intent = new Intent(this, SecondActivity.class);
@@ -54,18 +49,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goto_third(View V) {
-        // Grab the text, and store it in a preference.
-        EditText edv = (EditText) findViewById(R.id.editText1);
-        String text1 = edv.getText().toString();
-        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(PREF_STRING_1, text1);
-        editor.commit();
-
+        EditText edv1 = (EditText) findViewById(R.id.editText1);
+        String text1 = edv1.getText().toString();
+        appInfo.setColor(text1, 0);
 //         The second string we store it in the singleton class.
         EditText edv2 = (EditText) findViewById(R.id.editText2);
         String text2 = edv2.getText().toString();
-        appInfo.setColor(text2);
+        appInfo.setColor(text2, 1);
 
         // Go to second activity
         Intent intent = new Intent(this, ThirdActivity.class);

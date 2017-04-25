@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 public class ThirdActivity extends AppCompatActivity {
 
-    static final public String MYPREFS = "myprefs";
-    static final public String PREF_STRING_1 = "string_1";
+    //static final public String MYPREFS = "myprefs";
+    //static final public String PREF_STRING_1 = "string_1";
 
     AppInfo appInfo;
 
@@ -46,13 +46,9 @@ public class ThirdActivity extends AppCompatActivity {
 
 
     public void goto_first(View V) {
-//        // Grab the text, and store it in a preference.
-//        EditText edv = (EditText) findViewById(R.id.editText3);
-//        String text3 = edv.getText().toString();
-//        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
-//        SharedPreferences.Editor editor = settings.edit();
-//        editor.putString(PREF_STRING_1, text3);
-//        editor.commit();
+        EditText edv1 = (EditText) findViewById(R.id.editText3);
+        String text3 = edv1.getText().toString();
+        appInfo.setColor(text3, 2);
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -61,13 +57,9 @@ public class ThirdActivity extends AppCompatActivity {
     }
 
     public void goto_second(View V) {
-//        // Grab the text, and store it in a preference.
-//        EditText edv = (EditText) findViewById(R.id.editText3);
-//        String text3 = edv.getText().toString();
-//        SharedPreferences settings = getSharedPreferences(MYPREFS, 0);
-//        SharedPreferences.Editor editor = settings.edit();
-//        editor.putString(PREF_STRING_1, text3);
-//        editor.commit();
+        EditText edv1 = (EditText) findViewById(R.id.editText3);
+        String text3 = edv1.getText().toString();
+        appInfo.setColor(text3, 2);
 
         Intent intent = new Intent(this, SecondActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

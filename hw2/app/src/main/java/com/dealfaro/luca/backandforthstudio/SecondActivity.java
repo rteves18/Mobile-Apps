@@ -36,7 +36,8 @@ public class SecondActivity extends AppCompatActivity {
         // and the one from the singleton object
         TextView tv2 = (TextView) findViewById(R.id.textView3);
         tv2.setText(appInfo.sharedString);
-
+        TextView tv3 = (TextView) findViewById(R.id.textView4);
+        tv3.setText(appInfo.sharedString);
     }
 
     @Override

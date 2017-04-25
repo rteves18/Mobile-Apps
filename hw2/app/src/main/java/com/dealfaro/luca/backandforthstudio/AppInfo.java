@@ -2,6 +2,9 @@ package com.dealfaro.luca.backandforthstudio;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
+import java.util.Arrays;
 
 /**
  * Created by luca on 18/1/2016.
@@ -10,6 +13,7 @@ public class AppInfo {
 
     private static AppInfo instance = null;
     private static final String COLOR_NAME = "color2";
+    private String[] paco = new String[3];
 
     protected AppInfo() {
         // Exists only to defeat instantiation.
@@ -30,11 +34,13 @@ public class AppInfo {
         return instance;
     }
 
-    public void setColor(String c) {
-        instance.sharedString = c;
+    public void setColor(String c, int x) {
+        paco[x] = c;
+        instance.sharedString = paco[x];
+        Log.d("this is my array", "arr: " + Arrays.toString(paco));
         SharedPreferences settings = my_context.getSharedPreferences(MainActivity.MYPREFS, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString(COLOR_NAME, c);
+        editor.putString(COLOR_NAME, paco[x]);
         editor.commit();
     }
 
