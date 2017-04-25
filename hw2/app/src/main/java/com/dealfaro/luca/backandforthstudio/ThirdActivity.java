@@ -33,7 +33,7 @@ public class ThirdActivity extends AppCompatActivity {
 
         // and the one from the singleton object
         TextView tv2 = (TextView) findViewById(R.id.textView3);
-        tv2.setText(appInfo.sharedString);
+        tv2.setText(appInfo.sharedString[1]);
 
     }
 

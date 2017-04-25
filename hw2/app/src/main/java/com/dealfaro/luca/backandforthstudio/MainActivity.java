@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         edv.setText(myText);
         EditText edv2 = (EditText) findViewById(R.id.editText2);
         if (appInfo.sharedString != null) {
-            edv2.setText(appInfo.sharedString);
+            edv2.setText(appInfo.sharedString[1]);
         }
     }
 

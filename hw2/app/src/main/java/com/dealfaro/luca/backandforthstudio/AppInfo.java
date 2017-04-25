@@ -20,7 +20,7 @@ public class AppInfo {
     }
 
     // Here are some values we want to keep global.
-    public String sharedString;
+    public String[] sharedString = new String[3];
 
     private Context my_context;
 
@@ -29,14 +29,14 @@ public class AppInfo {
             instance = new AppInfo();
             instance.my_context = context;
             SharedPreferences settings = context.getSharedPreferences(MainActivity.MYPREFS, 0);
-            instance.sharedString = settings.getString(COLOR_NAME, null);
+            instance.sharedString[0] = settings.getString(COLOR_NAME, null);
         }
         return instance;
     }
 
     public void setColor(String c, int x) {
         paco[x] = c;
-        instance.sharedString = paco[x];
+        instance.sharedString[x] = paco[x];
         Log.d("this is my array", "arr: " + Arrays.toString(paco));
         SharedPreferences settings = my_context.getSharedPreferences(MainActivity.MYPREFS, 0);
         SharedPreferences.Editor editor = settings.edit();
