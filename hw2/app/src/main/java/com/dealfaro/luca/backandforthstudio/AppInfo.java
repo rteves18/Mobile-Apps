@@ -12,7 +12,9 @@ import java.util.Arrays;
 public class AppInfo {
 
     private static AppInfo instance = null;
-    private static final String[] COLOR_NAME = new String[3];
+    private static final String COLOR_NAME1 = "color1";
+    private static final String COLOR_NAME2 = "color2";
+    private static final String COLOR_NAME3 = "color3";
     private String[] paco = new String[3];
 
     protected AppInfo() {
@@ -28,10 +30,10 @@ public class AppInfo {
         if(instance == null) {
             instance = new AppInfo();
             instance.my_context = context;
-            for (int i=0; i < 3; i++) {
-                SharedPreferences settings = context.getSharedPreferences(MainActivity.MYPREFS, i);
-                instance.sharedString[i] = settings.getString(COLOR_NAME[i], null);
-            }
+                SharedPreferences settings = context.getSharedPreferences(MainActivity.MYPREFS, 0);
+                instance.sharedString[0] = settings.getString(COLOR_NAME1, null);
+                instance.sharedString[1] = settings.getString(COLOR_NAME2, null);
+                instance.sharedString[2] = settings.getString(COLOR_NAME3, null);
         }
         return instance;
     }
@@ -39,10 +41,14 @@ public class AppInfo {
     public void setColor(String c, int x) {
         paco[x] = c;
         instance.sharedString[x] = paco[x];
-        Log.d("this is my array", "arr: " + Arrays.toString(paco));
-        SharedPreferences settings = my_context.getSharedPreferences(MainActivity.MYPREFS, x);
+        Log.d("paco", "arr: " + Arrays.toString(paco));
+        SharedPreferences settings = my_context.getSharedPreferences(MainActivity.MYPREFS, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString(COLOR_NAME[x], paco[x]);
+        if (x ==0) editor.putString(COLOR_NAME1, c);
+        if (x ==1) editor.putString(COLOR_NAME2, c);
+        if (x ==2) editor.putString(COLOR_NAME3, c);
+//        editor.putString(COLOR_NAME[x], paco[x]);
+//        Log.d("COLOR_NAME", "arr: " + Arrays.toString(COLOR_NAME));
         editor.commit();
     }
 

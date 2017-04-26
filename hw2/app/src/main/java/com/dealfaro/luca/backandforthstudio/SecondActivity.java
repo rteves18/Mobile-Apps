@@ -1,9 +1,11 @@
 package com.dealfaro.luca.backandforthstudio;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -30,7 +32,7 @@ public class SecondActivity extends AppCompatActivity {
         tv3.setText(appInfo.sharedString[2]);
 
         EditText edv = (EditText) findViewById(R.id.editText2);
-        if (appInfo.sharedString != null) {
+        if (appInfo.sharedString[1] != null) {
             edv.setText(appInfo.sharedString[1]);
         }
     }
@@ -47,9 +49,12 @@ public class SecondActivity extends AppCompatActivity {
         String text2 = edv2.getText().toString();
         appInfo.setColor(text2, 1);
 
-        Intent intent = new Intent(this, SecondActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        InputMethodManager inputManager =
+                (InputMethodManager) this.
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(
+                this.getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
         // finish();
     }
 

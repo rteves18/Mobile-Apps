@@ -1,17 +1,19 @@
 package com.dealfaro.luca.backandforthstudio;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     static final public String MYPREFS = "myprefs";
-    static final public String PREF_STRING_1 = "string_1";
+//    static final public String PREF_STRING_1 = "string_1";
 
     AppInfo appInfo;
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         tv3.setText(appInfo.sharedString[2]);
         //insert string1
         EditText edv = (EditText) findViewById(R.id.editText1);
-        if (appInfo.sharedString != null) {
+        if (appInfo.sharedString[0] != null) {
             edv.setText(appInfo.sharedString[0]);
         }
 
@@ -42,10 +44,12 @@ public class MainActivity extends AppCompatActivity {
         String text1 = edv1.getText().toString();
         appInfo.setColor(text1, 0);
 
-        // Go to second activity
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        InputMethodManager inputManager =
+                (InputMethodManager) this.
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(
+                this.getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public void goto_second(View V) {
