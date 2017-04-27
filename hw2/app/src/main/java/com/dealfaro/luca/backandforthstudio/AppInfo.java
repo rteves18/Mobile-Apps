@@ -12,8 +12,7 @@ import java.util.Arrays;
 public class AppInfo {
 
     private static AppInfo instance = null;
-    private static final String[] COLOR_NAME = new String[3];
-    private String[] paco = new String[3];
+    private static final String[] COLOR_NAME = {"st1","st2","st3"};
 
     protected AppInfo() {
         // Exists only to defeat instantiation.
@@ -39,14 +38,10 @@ public class AppInfo {
     }
 
     public void setColor(String c, int x) {
-        paco[x] = c;
-        instance.sharedString[x] = paco[x];
-        Log.d("paco", "arr: " + Arrays.toString(paco));
+        instance.sharedString[x] = c;
         SharedPreferences settings = my_context.getSharedPreferences(MainActivity.MYPREFS, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(COLOR_NAME[x], c);
-//        editor.putString(COLOR_NAME[x], paco[x]);
-//        Log.d("COLOR_NAME", "arr: " + Arrays.toString(COLOR_NAME));
         editor.commit();
     }
 
