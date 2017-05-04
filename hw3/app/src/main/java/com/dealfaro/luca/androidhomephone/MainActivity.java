@@ -108,13 +108,13 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         final TextView detailView = (TextView) findViewById(R.id.detailView1);
         //String url = "https://luca-ucsc-teaching-backend.appspot.com/api_w_ndb/get_msg_for_me";
-        String url = "https://luca-ucsc-teaching-backend.appspot.com/hw3/request_via_get";
-
+//        String url = "https://luca-ucsc-teaching-backend.appspot.com/hw3/request_via_get";
+        String url = "https://luca-ucsc-teaching-backend.appspot.com/hw4/get_news_sites";
         String my_url = url + "?token=" + URLEncoder.encode(msg);
 
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, my_url, null, new Response.Listener<JSONObject>() {
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
