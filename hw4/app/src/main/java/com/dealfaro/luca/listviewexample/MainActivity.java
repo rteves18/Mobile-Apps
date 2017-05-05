@@ -96,20 +96,14 @@ public class MainActivity extends AppCompatActivity {
 //            b.setText(w.buttonLabel);
 
             // Sets a listener for the button, and a tag for the button as well.
-            tv.setTag(new Integer(position));
-            tv.setOnClickListener(new View.OnClickListener() {
+            newView.setTag(w.textLabel);
+            newView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Reacts to a button press.
-                    // Gets the integer tag of the button.
-                    String s = v.getTag().toString();
+                    String s = "Loading " + v.getTag().toString();
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(context, s, duration);
                     toast.show();
-                    // Let's remove the list item.
-                    int i = Integer.parseInt(s);
-                    aList.remove(i);
-                    aa.notifyDataSetChanged();
                 }
             });
 
@@ -118,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             newView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String s = v.getTag().toString();
+                    String s = "Loading " + v.getTag().toString();
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(context, s, duration);
                     toast.show();
