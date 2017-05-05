@@ -46,17 +46,15 @@ public class MainActivity extends AppCompatActivity {
     private class ListElement {
         ListElement() {};
 
-        ListElement(String title, String sub, String url, String bl) {
+        ListElement(String title, String sub, String url) {
             textLabel = title;
             textTitle = sub;
             texturl = url;
-            buttonLabel = bl;
         }
 
         public String texturl;
         public String textLabel;
         public String textTitle;
-        public String buttonLabel;
     }
 
     private ArrayList<ListElement> aList;
@@ -161,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                                     String title = c.getString("title");
 
                                     if(!url.contains("null") && !title.contains("null") && !subtitle.contains("null")){
-                                        aList.add(new ListElement(title, subtitle, url, "Delete"));
+                                        aList.add(new ListElement(title, subtitle, url));
                                     }
                                 }
                             }
