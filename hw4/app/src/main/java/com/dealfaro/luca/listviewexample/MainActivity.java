@@ -46,13 +46,15 @@ public class MainActivity extends AppCompatActivity {
     private class ListElement {
         ListElement() {};
 
-        ListElement(String title, String bl) {
+        ListElement(String title, String sub, String bl) {
             textLabel = title;
+            textTitle = sub;
 
             buttonLabel = bl;
         }
 
         public String textLabel;
+        public String textTitle;
         public String buttonLabel;
     }
 
@@ -87,13 +89,15 @@ public class MainActivity extends AppCompatActivity {
 
             // Fills in the view.
             TextView tv = (TextView) newView.findViewById(R.id.itemText);
-            Button b = (Button) newView.findViewById(R.id.itemButton);
+            TextView tvo = (TextView) newView.findViewById(R.id.subItemText);
+//            Button b = (Button) newView.findViewById(R.id.itemButton);
             tv.setText(w.textLabel);
-            b.setText(w.buttonLabel);
+            tvo.setText(w.textTitle);
+//            b.setText(w.buttonLabel);
 
             // Sets a listener for the button, and a tag for the button as well.
-            b.setTag(new Integer(position));
-            b.setOnClickListener(new View.OnClickListener() {
+            tv.setTag(new Integer(position));
+            tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Reacts to a button press.
@@ -126,46 +130,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private MyAdapter aa;
-
-    private void getMessages() {
-
-        // Instantiate the RequestQueue.
-        final TextView detailView = (TextView) findViewById(R.id.detailVeiw1);
-        //String url = "https://luca-ucsc-teaching-backend.appspot.com/api_w_ndb/get_msg_for_me";
-//        String url = "https://luca-ucsc-teaching-backend.appspot.com/hw3/request_via_get";
-        String url = "https://luca-ucsc-teaching-backend.appspot.com/hw4/get_news_sites";
-//        String my_url = url + "?token=" + URLEncoder.encode(msg);
-
-
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(LOG_TAG, "getMessages Received: " + response.toString());
-                        try {
-                        String value = response.getString("news_sites");
-                        detailView.setText(value);
-                        } catch (JSONException e){
-                            throw new RuntimeException(e);
-                        }
-                        // Ok, let's disassemble a bit the json object.
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-                        Log.d(LOG_TAG, error.toString());
-                    }
-                });
-
-        // In some cases, we don't want to cache the request.
-        // jsObjRequest.setShouldCache(false);
-
-        queue.add(jsObjRequest);
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -229,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                                     // adding contact to contact list
 //                                contactList.add(contact);
                                     if(!url.contains("null") && !title.contains("null") && !subtitle.contains("null")){
-                                        aList.add(new ListElement(title, "Delete"));
+                                        aList.add(new ListElement(title, subtitle, "Delete"));
                                     }
                                 }
                             }
