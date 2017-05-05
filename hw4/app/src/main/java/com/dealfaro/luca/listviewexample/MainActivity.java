@@ -37,7 +37,6 @@ import java.util.Map;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,13 +46,14 @@ public class MainActivity extends AppCompatActivity {
     private class ListElement {
         ListElement() {};
 
-        ListElement(String title, String sub, String bl) {
+        ListElement(String title, String sub, String url, String bl) {
             textLabel = title;
             textTitle = sub;
-
+            texturl = url;
             buttonLabel = bl;
         }
 
+        public String texturl;
         public String textLabel;
         public String textTitle;
         public String buttonLabel;
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LinearLayout newView;
+            final LinearLayout newView;
 
             ListElement w = getItem(position);
 
@@ -91,22 +91,10 @@ public class MainActivity extends AppCompatActivity {
             // Fills in the view.
             TextView tv = (TextView) newView.findViewById(R.id.itemText);
             TextView tvo = (TextView) newView.findViewById(R.id.subItemText);
-//            Button b = (Button) newView.findViewById(R.id.itemButton);
             tv.setText(w.textLabel);
             tvo.setText(w.textTitle);
-//            b.setText(w.buttonLabel);
+            final String url = w.texturl;
 
-            // Sets a listener for the button, and a tag for the button as well.
-            newView.setTag(w.textLabel);
-            newView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String s = "Loading " + v.getTag().toString();
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, s, duration);
-                    toast.show();
-                }
-            });
 
             // Set a listener for the whole list item.
             newView.setTag(w.textLabel);
@@ -120,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(context, ReaderActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("URL", url);
                     startActivity(intent);
                 }
             });
@@ -146,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickRefresh (View v) {
         Log.i(LOG_TAG, "Requested a refresh of the list");
-//        getMessages();
 
         final TextView detailView = (TextView) findViewById(R.id.detailVeiw1);
         String url = "https://luca-ucsc-teaching-backend.appspot.com/hw4/get_news_sites";
@@ -171,28 +159,9 @@ public class MainActivity extends AppCompatActivity {
                                     String url = c.getString("url");
                                     String subtitle = c.getString("subtitle");
                                     String title = c.getString("title");
-//                                String address = c.getString("address");
-//                                String gender = c.getString("gender");
 
-                                    // Phone node is JSON Object
-//                                JSONObject phone = c.getJSONObject("phone");
-//                                String mobile = phone.getString("mobile");
-//                                String home = phone.getString("home");
-//                                String office = phone.getString("office");
-
-                                    // tmp hash map for single contact
-//                                HashMap<String, String> contact = new HashMap<>();
-//
-//                                // adding each child node to HashMap key => value
-//                                contact.put("url", url);
-//                                contact.put("subtitle", subtitle);
-//                                contact.put("title", title);
-//                                contact.put("mobile", mobile);
-
-                                    // adding contact to contact list
-//                                contactList.add(contact);
                                     if(!url.contains("null") && !title.contains("null") && !subtitle.contains("null")){
-                                        aList.add(new ListElement(title, subtitle, "Delete"));
+                                        aList.add(new ListElement(title, subtitle, url, "Delete"));
                                     }
                                 }
                             }
@@ -218,25 +187,6 @@ public class MainActivity extends AppCompatActivity {
 
         queue.add(jsObjRequest);
 
-//        Random rn = new Random();
-//        SecureRandomString srs = new SecureRandomString();
-        // How long a list do we make?
-//        int n = 4 + rn.nextInt(10);
-        // Let's fill the array with n random strings.
-        // NOTE: aList is associated to the array adapter aa, so
-        // we cannot do here aList = new ArrayList<ListElement>() ,
-        // otherwise we create another ArrayList which would not be
-        // associated with aa.
-        // aList = new ArrayList<ListElement>(); --- NO
-//        aList.clear();
-//        for (int i = 0; i < n; i++) {
-//            aList.add(new ListElement(
-//                srs.nextString(), "Delete"
-//            ));
-//        }
-        // We notify the ArrayList adapter that the underlying list has changed,
-        // triggering a re-rendering of the list.
-//        aa.notifyDataSetChanged();
     }
 
 }
