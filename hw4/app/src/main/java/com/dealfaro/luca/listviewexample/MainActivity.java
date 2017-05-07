@@ -163,8 +163,8 @@ public class MainActivity extends AppCompatActivity {
 
                                     if(!url.contains("null") && !title.contains("null")){
                                         if(subtitle.toString().contentEquals("null")) {
-                                            String subtitle2 = "link";
-                                            aList.add(new ListElement(url, subtitle2, url));
+                                            String subtitle2 = "";
+                                            aList.add(new ListElement(title, subtitle2, url));
                                         } else {
                                             Log.d(LOG_TAG, "subtitle: " + subtitle);
                                             aList.add(new ListElement(title, subtitle, url));

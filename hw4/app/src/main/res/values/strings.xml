@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ListViewExample</string>
+    <string name="app_name">News Viewer</string>
     <string name="refresh_msg">Refresh</string>
     <string name="action_settings">Settings</string>
 </resources>

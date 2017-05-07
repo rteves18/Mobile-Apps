@@ -3,19 +3,23 @@ package com.dealfaro.luca.listviewexample;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.URLUtil;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -27,37 +31,68 @@ public class ReaderActivity extends AppCompatActivity {
     static final public String WEBPAGE_NOTHING = "about:blank";
     static final public String MY_WEBPAGE = "https://www.google.com/";
     static final public String LOG_TAG = "webview_example";
-    String url = "https://www.google.com/";
+    String news_url = "https://www.google.com/";
 
     WebView myWebView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reader);
         myWebView = (WebView) findViewById(R.id.webView1);
-        myWebView.setWebViewClient(new WebViewClient());
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        // Binds the Javascript interface
-        myWebView.addJavascriptInterface(new JavaScriptInterface(this), "Android");
         Bundle extras = getIntent().getExtras();
         if(extras == null) {
             finish(); // No idea what else to do
         } else {
-            url = extras.getString("URL");
+            news_url = extras.getString("URL");
         }
-        myWebView.loadUrl(url);
+        myWebView.setWebViewClient(new MyWebViewClient());
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        // Binds the Javascript interface
+        myWebView.addJavascriptInterface(new JavaScriptInterface(this), "Android");
+        myWebView.loadUrl(news_url);
         myWebView.loadUrl("javascript:alert(\"Hello\")");
-
     }
 
-    public void returnToMain(View view) {
-//        Intent intent = new Intent(this, MainActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        startActivity(intent);
-        onBackPressed();
+    private class MyWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            if (Uri.parse(url).getHost().contains(news_url)) {
+                // This is my web site, so do not override; let my WebView load the page
+                return false;
+            }
+            // Otherwise, the link is not for a page on my site,
+// so launch another Activity that handles URLs
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+            return true;
+        }
     }
+
+    @Override
+    public void onBackPressed(){
+        if (myWebView.canGoBack()) {
+            myWebView.goBack();
+        } else {
+            finish();
+        }
+    }
+
+
+
+    public void Search(View view) {
+        EditText search = (EditText) (findViewById(R.id.editText));
+        String searching = search.getText().toString();
+        InputMethodManager inputManager =
+                (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+            myWebView.loadUrl("https://www.google.com/#q=" + searching);
+    }
+
 
     public class JavaScriptInterface {
         Context mContext; // Having the context is useful for lots of things,
@@ -67,6 +102,8 @@ public class ReaderActivity extends AppCompatActivity {
         JavaScriptInterface(Context c) {
             mContext = c;
         }
+
+
 
         @JavascriptInterface
         public void myFunction(String args) {
@@ -130,7 +167,7 @@ public class ReaderActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -149,5 +186,7 @@ public class ReaderActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
 
