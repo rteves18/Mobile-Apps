@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             newView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String s = "Loading " + v.getTag().toString();
+                    String s = "Loading " + url;
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(context, s, duration);
                     toast.show();
