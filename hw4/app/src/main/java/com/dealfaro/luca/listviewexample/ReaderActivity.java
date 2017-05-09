@@ -60,7 +60,8 @@ public class ReaderActivity extends AppCompatActivity {
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (Uri.parse(url).getHost().contains(news_url)) {
+            Log.i(LOG_TAG, url + "\n" + news_url);
+            if (url.contains(news_url)) {
                 // This is my web site, so do not override; let my WebView load the page
                 return false;
             }
