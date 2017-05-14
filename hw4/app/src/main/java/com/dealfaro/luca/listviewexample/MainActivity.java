@@ -46,15 +46,16 @@ public class MainActivity extends AppCompatActivity {
     private class ListElement {
         ListElement() {};
 
-        ListElement(String title, String sub, String url) {
+        ListElement(String title, String sub, String url, double a) {
 
+            blah = a;
             textLabel = title;
             textTitle = sub;
             texturl = url;
 
 
         }
-
+        public double blah;
         public String texturl;
         public String textLabel;
         public String textTitle;
@@ -160,14 +161,14 @@ public class MainActivity extends AppCompatActivity {
                                     String url = c.getString("url");
                                     String subtitle = c.getString("subtitle");
                                     String title = c.getString("title");
-
+                                    Double blah = 1.1;
                                     if(!url.contains("null") && !title.contains("null")){
                                         if(subtitle.toString().contentEquals("null")) {
                                             String subtitle2 = "";
-                                            aList.add(new ListElement(title, subtitle2, url));
+                                            aList.add(new ListElement(title, subtitle2, url, blah));
                                         } else {
                                             Log.d(LOG_TAG, "subtitle: " + subtitle);
-                                            aList.add(new ListElement(title, subtitle, url));
+                                            aList.add(new ListElement(title, subtitle, url, blah));
                                         }
                                     }
                                 }
