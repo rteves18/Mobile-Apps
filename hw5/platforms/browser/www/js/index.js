@@ -53,20 +53,20 @@ var app = function() {
 			{13: 'white'},
 			{14: 'red'},
 			{15: 'white'},
-			{0: 'black'},
+			{"": 'black'},
 		   ];
 
     };
 
     self.shuffle = function(i, j) {
         // You need to implement this.
-       if (self.vue.getKey(i, j+1) == '0'){
+       if (self.vue.getKey(i, j+1) == ''){
             self.vue.switchCell(4*i+j, 4*i+(j+1));
-        } else if (self.getKey(i, j-1) == '0'){
+        } else if (self.getKey(i, j-1) == ''){
             self.vue.switchCell(4*i+j, 4*i+(j-1));
-        } else if (self.getKey(i+1, j) == '0'){
+        } else if (self.getKey(i+1, j) == ''){
             self.vue.switchCell(4*i+j, 4*(i+1)+j)
-        } else if (self.getKey(i-1, j) == '0'){
+        } else if (self.getKey(i-1, j) == ''){
             self.vue.switchCell(4*i+j, 4*(i-1)+j);
         } else {
             console.log("Can't move from there");
@@ -202,7 +202,7 @@ var app = function() {
 			{13: 'white'},
 			{14: 'red'},
 			{15: 'white'},
-			{0: 'black'},
+			{"": 'black'},
 		   ]
         },
         methods: {
